@@ -20,7 +20,7 @@ def tictactoe():
     player1_name = input("Player 1, what's your name? ")
     player2_name = input("Player 2, what's your name? ")
 
-    while moves > 1:
+    while moves > 0:
         print(printBoard(demoBoard))
         print(printBoard(gameBoard))
         player1_move = input(f"""{player1_name},
@@ -35,10 +35,11 @@ def tictactoe():
             """)
             i = player1_move
             gameBoard[i] = 'X'
+            moves -= 1
+            print(f"moves left: {moves}")
         else:
             gameBoard[i] = 'X'
             print(printBoard(gameBoard))
-
             moves -= 1
             print(f"moves left: {moves}")
 
@@ -57,19 +58,65 @@ def tictactoe():
             """)
             i = player2_move
             gameBoard[i] = 'O'
+            moves -= 1
+            print(f"moves left: {moves}")
         else:
             gameBoard[i] = 'O'
             print(printBoard(gameBoard))
-
             moves -= 1
             print(f"moves left: {moves}")
 
-        # i = player2_move
-        # gameBoard[i] = 'O'
-        # print(printBoard(gameBoard))
-        #
-        # moves -= 1
-        # print(f"moves left: {moves}")
+        if moves <= 5:
+            if gameBoard['7'] == gameBoard['8'] == gameBoard['9'] != ' ':
+                print(printBoard(gameBoard))
+                if gameBoard['7'] == 'X':
+                    print(f"Game Over! {player1_name} Won!")
+                elif gameBoard['7'] == 'O':
+                    print(f"Game Over! {player2_name} Won!")
+                    break
 
+            elif gameBoard['4'] == gameBoard['5'] == gameBoard['6'] != ' ':
+                print(printBoard(gameBoard))
+                if gameBoard['4'] == 'X':
+                    print(f"Game Over! {player1_name} Won!")
+                elif gameBoard['4'] == 'O':
+                    print(f"Game Over! {player2_name} Won!")
+                    break
+
+            elif gameBoard['1'] == gameBoard['2'] == gameBoard['3'] != ' ':
+                print(printBoard(gameBoard))
+                if gameBoard['1'] == 'X':
+                    print(f"Game Over! {player1_name} Won!")
+                elif gameBoard['1'] == 'O':
+                    print(f"Game Over! {player2_name} Won!")
+                    break
+
+            elif gameBoard['7'] == gameBoard['4'] == gameBoard['1'] != ' ':
+                print(printBoard(gameBoard))
+                if gameBoard['7'] == 'X':
+                    print(f"Game Over! {player1_name} Won!")
+                elif gameBoard['7'] == 'O':
+                    print(f"Game Over! {player2_name} Won!")
+                    break
+
+            elif gameBoard['8'] == gameBoard['5'] == gameBoard['2'] != ' ':
+                print(printBoard(gameBoard))
+                if gameBoard['8'] == 'X':
+                    print(f"Game Over! {player1_name} Won!")
+                elif gameBoard['8'] == 'O':
+                    print(f"Game Over! {player2_name} Won!")
+                    break
+
+            elif gameBoard['9'] == gameBoard['6'] == gameBoard['3'] != ' ':
+                print(printBoard(gameBoard))
+                if gameBoard['9'] == 'X':
+                    print(f"Game Over! {player1_name} Won!")
+                elif gameBoard['9'] == 'O':
+                    print(f"Game Over! {player2_name} Won!")
+                    break
+                    
+        if moves == 0:
+            print('Tie! Game Over!')
+            break
 
 tictactoe()
