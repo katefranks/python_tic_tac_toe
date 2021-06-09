@@ -13,11 +13,6 @@ def printBoard(board):
     print('-+-+-')
     print(board['1'] + '|' + board['2'] + '|' + board['3'])
     print("\U0001F929 \U0001F929 \U0001F929")
-# print("""Demo Board:
-# """)
-printBoard(demoBoard)
-printBoard(gameBoard)
-
 
 def tictactoe():
     moves = 9
@@ -25,25 +20,56 @@ def tictactoe():
     player1_name = input("Player 1, what's your name? ")
     player2_name = input("Player 2, what's your name? ")
 
-    print(printBoard(demoBoard))
-    player1_move = input(f"""{player1_name},
-    What's your move?
-    Enter a corresponding # from the demo board:
-     """)
+    while moves > 1:
+        print(printBoard(demoBoard))
+        print(printBoard(gameBoard))
+        player1_move = input(f"""{player1_name},
+        What's your move?
+        Enter a corresponding # from the demo board:
+         """)
+        i = player1_move
+        if gameBoard[i] != ' ':
+            player1_move = input(f"""{player1_name},
+            That position has already been taken!
+            Please choose another #:
+            """)
+            i = player1_move
+            gameBoard[i] = 'X'
+        else:
+            gameBoard[i] = 'X'
+            print(printBoard(gameBoard))
 
-    i = player1_move
-    gameBoard[i] = 'X'
-    print(printBoard(gameBoard))
+            moves -= 1
+            print(f"moves left: {moves}")
 
 
-    print(printBoard(demoBoard))
-    player2_move = input(f"""{player2_name},
-    What's your move?
-    Enter a corresponding # from the demo board: """)
+        print(printBoard(demoBoard))
+        print(printBoard(gameBoard))
+        player2_move = input(f"""{player2_name},
+        What's your move?
+        Enter a corresponding # from the demo board:
+        """)
+        i = player2_move
+        if gameBoard[i] != ' ':
+            player2_move = input(f"""{player2_name},
+            That position has already been taken!
+            Please choose another #:
+            """)
+            i = player2_move
+            gameBoard[i] = 'O'
+        else:
+            gameBoard[i] = 'O'
+            print(printBoard(gameBoard))
 
-    i = player2_move
-    gameBoard[i] = 'O'
-    print(printBoard(gameBoard))
+            moves -= 1
+            print(f"moves left: {moves}")
+
+        # i = player2_move
+        # gameBoard[i] = 'O'
+        # print(printBoard(gameBoard))
+        #
+        # moves -= 1
+        # print(f"moves left: {moves}")
 
 
 tictactoe()
